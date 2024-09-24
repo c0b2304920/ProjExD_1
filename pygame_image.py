@@ -21,23 +21,27 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT: return
         key_list = pg.key.get_pressed()
+        move_x,move_y=0,0
         if key_list[pg.K_UP]:
-            kk_r.move_ip((0,-3))
+            move_y=-1
         if key_list[pg.K_DOWN]:
-            kk_r.move_ip((0,3))
+            move_y=1
         if key_list[pg.K_LEFT]:
-            kk_r.move_ip((-3,0))
+            move_x=-1
         if key_list[pg.K_RIGHT]:
-            kk_r.move_ip((3,0))
+            move_x=2
+        kk_r.move_ip((move_x,move_y)) 
         x=-(tmr%3200)
         screen.blit(bg_img, [x, 0])
         screen.blit(bg2_img, [x+1600, 0])
         screen.blit(bg_img, [x+3200, 0])
         screen.blit(bg2_img, [x+4800, 0])
         screen.blit(kk_img, kk_r)
+        kk_r.move_ip((-1,0)) 
         pg.display.update()
-        tmr += 1        
+        tmr += 1      
         clock.tick(200)
+        
 
 
 if __name__ == "__main__":
